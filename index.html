@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="https://via.placeholder.com/192">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموسوعة التعليمية | إلياس نعيمي</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4508763391122791" crossorigin="anonymous"></script>
+
+    <style>
+    /* الفقاعة العائمة - تظهر في كل الموقع */
+.floating-fb {
+    position: fixed;
+    bottom: 85px; /* فوق زر الوضع الليلي */
+    left: 20px;
+    background: #1877F2;
+    color: white !important;
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 9999; /* رقم عالي جداً لتظهر فوق الدروس */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+    font-weight: bold;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* شريط التحديثات القادمة */
+.top-updates {
+    background: #f59e0b;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    position: sticky;
+    top: 55px; /* تحت شريط التنقل الأسود */
+    z-index: 1001;
+}
+
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+        }
+
+        /* --- ميزة الوضع الليلي --- */
+        body.dark-mode {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --primary: #60a5fa;
+        }
+        .dark-toggle {
+            position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px;
+            border-radius: 50%; background: var(--primary); color: white;
+            border: none; cursor: pointer; z-index: 1000; font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;
+        }
+
+        /* --- تنسيق أزرار المشاركة --- */
+        .share-bar {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .share-title { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; }
+        .dark-mode .share-title { color: #cbd5e1; }
+        .share-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .share-btn {
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .bg-fb { background: #1877F2; }
+        .bg-wa { background: #25D366; }
+        .bg-tg { background: #0088cc; }
+        .bg-in { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .share-btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e40af 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+
+        header h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0; font-weight: 800; }
+        .sub-header { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; }
+
+        .search-section {
+            max-width: 700px;
+            margin: -35px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 18px 30px;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            font-size: 1.1rem;
+            outline: none;
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        #searchInput:focus { border-color: var(--primary); box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; min-height: 60vh; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .card h3 { color: var(--primary); font-family: 'Amiri', serif; font-size: 1.8rem; margin: 0 0 15px 0; }
+        .card p { color: #64748b; font-size: 0.95rem; }
+
+        #viewer { 
+            display: none; 
+            background: var(--card-bg); 
+            padding: clamp(20px, 5vw, 50px); 
+            border-radius: 32px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #content h2 { color: var(--dark); font-family: 'Amiri', serif; font-size: 2.5rem; border-right: 8px solid var(--accent); padding-right: 15px; margin-bottom: 30px; }
+        .dark-mode #content h2 { color: var(--primary); }
+        
+        .rule { background: #fffbeb; border: 1px solid #fef3c7; padding: 25px; border-radius: 15px; margin: 25px 0; position: relative; color: #1e293b; }
+        .dark-mode .rule { background: #334155; border-color: var(--accent); color: white; }
+        .rule::before { content: '💡 قاعدة'; position: absolute; top: -12px; right: 20px; background: var(--accent); color: white; padding: 2px 12px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; }
+        
+        .parsing { background: #f1f5f9; border-right: 5px solid var(--primary); padding: 25px; border-radius: 12px; font-family: 'Amiri', serif; font-size: 1.4rem; color: #334155; margin: 20px 0; }
+        .dark-mode .parsing { background: #1e293b; color: #cbd5e1; }
+        .parsing b { color: var(--primary); }
+
+        footer { background: var(--dark); color: white; padding: 60px 20px; text-align: center; margin-top: 80px; }
+        .footer-tag { background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            header { padding: 60px 20px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+  <div class="top-updates">
+    📢 !!لاتزال هناك تحديثات قادمة ... انتظرونا
+</div>
+
+<a href="https://www.facebook.com/share/17wEZUb6mq/" target="_blank" class="floating-fb">
+    <span>صفحتنا على فيسبوك</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" width="20" height="20">
+</a>
+
+<div style="text-align: center; padding: 20px; background: var(--bg);">
+    <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#2563eb"/>
+        <path d="M30 30 H70 M30 50 H60 M30 70 H70" stroke="white" stroke-width="8" stroke-linecap="round"/>
+        <path d="M65 35 Q80 50 65 65" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+        <text x="50" y="90" text-anchor="middle" fill="white" font-family="Cairo" font-size="12" font-weight="bold">ELYES</text>
+    </svg>
+</div>
+
+<button class="dark-toggle" onclick="toggleDark()">🌙</button>
+<nav style="background: var(--dark); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 20px; border-bottom: 2px solid var(--accent);">
+    <a href="#" style="color: white; text-decoration: none; font-weight: bold; border-bottom: 2px solid var(--accent);">📚 مادة العربية</a>
+    <a href="https://inaimi.github.io/Academy/" style="color: #cbd5e1; text-decoration: none; font-weight: bold;">🌍 مادة الاجتماعيات</a>
+</nav>
+
+<header>
+    <h1>الموسوعة التعليمية</h1>
+    <div class="sub-header">بوابة قواعد اللغة العربية - السنة ثانية ثانوي علمي</div>
+    <div style="margin-top: 25px;">
+        إعداد: <b>إلياس نعيمي</b> &nbsp;|&nbsp; إشراف الأستاذ: <b>خليفة ميموني</b>
+    </div>
+</header>
+
+<div class="container" style="padding-top: 10px;"> 
+    <div id="ai-radar" style="background: var(--card-bg); padding: 20px; border-radius: 20px; border: 2px dashed var(--primary); margin-bottom: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+        <h3 style="color: var(--primary); margin: 0 0 10px 0; font-size: 1.3rem;">🔍 نموذج الإعراب الذكي</h3>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 15px;">اكتب جملة وسأخبرك بالدرس الذي تنتمي إليه!</p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <input type="text" id="aiInput" placeholder="مثال: نعم الصدقُ..." style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 220px; font-family: 'Cairo';">
+            <button onclick="analyzeGrammar()" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;">حلل الجملة</button>
+        </div>
+        <div id="aiResult" style="margin-top: 15px; font-weight: bold; color: var(--primary); font-size: 0.95rem;"></div>
+    </div>
+
+    <div class="search-section" style="margin: 0 auto 30px auto;">
+        <input type="text" id="searchInput" placeholder="اكتب اسم الدرس هنا👉..." onkeyup="search()">
+        <p id="noResults" style="display:none; text-align:center; color:red; margin-top: 10px;">عذراً، الدرس غير موجود</p>
+    </div>
+</div>
+
+
+<div class="container">
+    <div id="menu" class="grid">
+        <div class="card" onclick="view('l1')"><h3>أوزان المبالغة</h3><p>تعرف على صيغ المبالغة الخمس القياسية وشروط عملها عمل الفعل.</p></div>
+        <div class="card" onclick="view('l2')"><h3>الممنوع من الصرف</h3><p>شرح العلة الواحدة والعلتين، ومتى يُجر بالفتحة ومتى يرجع للكسرة.</p></div>
+        <div class="card" onclick="view('l3')"><h3>لا النافية للجنس</h3><p>شروط العمل الكاملة وحالات إعراب الاسم (مبني أو منصوب).</p></div>
+        <div class="card" onclick="view('l4')"><h3>المدح والذم</h3><p>أركان الأسلوب مع "نعم وبئس" و "حبذا" وطريقة إعراب المخصوص.</p></div>
+        <div class="card" onclick="view('l5')"><h3>الإغراء والتحذير</h3><p>كيفية حث المخاطب أو تنبيهه وإعراب الفعل المحذوف وجوباً.</p></div>
+        <div class="card" onclick="view('l6')"><h3>أفعال التعجب</h3><p>إعراب صيغتي "ما أفعله" و "أفعل به" مع نماذج تطبيقية.</p></div>
+    </div>
+
+    <div id="viewer">
+        <button class="back-btn" onclick="home()">🔙 العودة للفهرس</button>
+        <div id="content"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-tag">جميع الحقوق محفوظة © إلياس نعيمي - 2026</div>
+    <p>موقع تعليمي مجاني مخصص لطلاب الثانية الثانوي</p>
+    <div class="social-links" style="margin-top: 15px;">
+    <a href="https://www.facebook.com/share/17wEZUb6mq/" target="_blank" style="color: #f59e0b; text-decoration: none;">
+        تابعونا على فيسبوك لجديد الأكاديمية 👍
+    </a>
+</div>
+</footer>
+
+<script>
+    const data = {
+        l1: {
+            title: "أوزان المبالغة وعملها بالتفصيل",
+            content: `<h2>صيغ المبالغة</h2>
+            <p>هي أسماء مشتقة من الأفعال الثلاثية المتعدية غالباً للدلالة على كثرة حدوث الفعل.</p>
+            <h3>1. الأوزان الخمسة المشهورة:</h3>
+            <ul>
+                <li><b>فَعَّال:</b> (مثل: علّام، جبّار، توّاب).</li>
+                <li><b>مِفْعَال:</b> (مثل: مِقدام، مِعطاء، مِتلاف).</li>
+                <li><b>فَعُول:</b> (مثل: غفور، صبور، أكول).</li>
+                <li><b>فَعِيل:</b> (مثل: سميع، بصير، قدير).</li>
+                <li><b>فَعِل:</b> (مثل: حَذِر، فَطِن، لَبِق، قَلِق).</li>
+            </ul>
+            <h3>2. عمل صيغة المبالغة:</h3>
+            <div class="rule">تعمل صيغة المبالغة عمل فعلها المبني للمعلوم (ترفع فاعلاً وتنصب مفعولاً به).</div>
+            <p><b>شروط العمل:</b></p>
+            <ul>
+                <li>إذا كانت معرفة بـ (ال) تعمل بدون شروط (القتّالُ أعداءَه شجاع).</li>
+                <li>إذا كانت نكرة تعمل بشرطين: (أن تدل على الحال أو الاستقبال) و (أن تسبق بنفي، استفهام، مبتدأ، أو موصوف).</li>
+            </ul>
+            <div class="parsing"><b>نموذج إعرابي: "أَحمالٌ الجنديُّ سلاحَه؟"</b><br>
+            - أحمال: الهمزة للاستفهام، حمال: مبتدأ مرفوع.<br>
+            - الجندي: فاعل لصيغة المبالغة سد مسد الخبر مرفوع.<br>
+            - سلاحه: مفعول به لصيغة المبالغة منصوب بالفتحة.</div>`
+        },
+        l2: {
+            title: "الممنوع من الصرف لعِلّة ولعِلّتين",
+            content: `<h2>الممنوع من الصرف</h2>
+            <p>هو الاسم الذي لا ينون (لا يلحقه التنوين) ويجر بالفتحة نيابة عن الكسرة.</p>
+            <h3>أولاً: الممنوع من الصرف لعلة واحدة (سبب واحد):</h3>
+            <ul>
+                <li><b>صيغة منتهى الجموع:</b> كل جمع تكسير وسطه ألف بعدها حرفان أو ثلاثة (مساجد، عصافير، قناديل).</li>
+                <li><b>الاسم المنتهي بألف التأنيث المقصورة:</b> (كبرى، صغرى، ليلى).</li>
+                <li><b>الاسم المنتهي بألف التأنيث الممدودة:</b> (صحراء، علماء، أصدقاء).</li>
+            </ul>
+            <h3>ثانياً: الممنوع من الصرف لعلتين:</h3>
+            <p><b>1. العَلَم:</b> (أعجمي مثل يوسف، مؤنث مثل حمزة أو سعاد، مركباً مزجياً مثل حضرموت، على وزن الفعل مثل يزيد، المنتهي بـ ان مثل عثمان، على وزن فُعَل مثل عُمر).</p>
+            <p><b>2. الصفة:</b> (على وزن أفعل مثل أكمل، على وزن فعلان مثل عطشان، على وزن فُعال ومفعل مثل ثلاث ومثنى).</p>
+            <div class="rule"><b>ملاحظة هامة جداً:</b> يجر الممنوع من الصرف بالكسرة الظاهرة إذا كان: <br>1. معرفاً بـ (ال) مثل: صليت في <b>المساجدِ</b>. <br>2. مضافاً مثل: صليت في <b>مساجدِ</b> القريةِ.</div>`
+        },
+        l3: {
+            title: "لا النافية للجنس وأحكامها",
+            content: `<h2>لا النافية للجنس</h2>
+            <p>هي التي تنفي الخبر عن جنس اسمها نصاً، وتعمل عمل (إنّ) فتنصب المبتدأ وترفع الخبر.</p>
+            <h3>شروط عملها (يجب توفرها معاً):</h3>
+            <ol>
+                <li>أن يكون اسمها وخبرها نكرتين.</li>
+                <li>ألا يفصل بينها وبين اسمها أي فاصل.</li>
+                <li>ألا تسبق بحرف جر (مثل الباء).</li>
+            </ol>
+            <h3>إعراب اسم لا النافية للجنس:</h3>
+            <ul>
+                <li><b>المبني:</b> يكون مبنياً على ما ينصب به إذا كان (مفرداً) أي ليس مضافاً ولا شبيهاً بالمضاف.<br>مثال: "لا <b>رجلَ</b> في الدار" (رجل: اسم لا مبني على الفتح).</li>
+                <li><b>المنصوب:</b> إذا كان مضافاً أو شبيهاً بالمضاف.<br>مثال: "لا <b>طالبَ</b> علمٍ خائبٌ" (طالب: اسم لا منصوب بالفتحة).</li>
+            </ul>
+            <div class="rule">إذا فقدت شرطاً يبطل عملها وتكرر وجوباً: "لا في البيتِ رجلٌ ولا امرأةٌ" (هنا لا مهملة).</div>`
+        },
+        l4: {
+            title: "أسلوب المدح والذم (نعم، بئس، حبذا)",
+            content: `<h2>المدح والذم</h2>
+            <p>أسلوب نستخدمه لإظهار الإعجاب بالشيء أو احتقاره.</p>
+            <h3>1. نعم (للمدح) و بئس (للذم):</h3>
+            <p><b>عناصر الأسلوب:</b> فعل المدح + الفاعل + المخصوص بالمدح.</p>
+            <p><b>حالات فاعل نعم وبئس:</b></p>
+            <ul>
+                <li>معرف بال: (نعم <b>الصديقُ</b> الوفي).</li>
+                <li>مضاف لما فيه ال: (بئس <b>مصيرُ</b> الكافرين النار).</li>
+                <li>ضمير مستتر يفسره تمييز: (نعم <b>خُلقاً</b> الصدق).</li>
+                <li>كلمة (ما) أو (من) الموصولتان: (نعم <b>ما</b> تفعله الخير).</li>
+            </ul>
+            <div class="parsing"><b>إعراب المخصوص:</b> يُعرب دائماً مبتدأ مؤخر مرفوع والجملة قبله خبر مقدم، أو خبر لمبتدأ محذوف وجوباً.</div>
+            <h3>2. حبذا ولا حبذا:</h3>
+            <p>الفاعل فيها دائماً هو (ذا) اسم إشارة، والمخصوص يُعرب مبتدأ مؤخر وجوباً.</p>`
+        },
+        l5: {
+            title: "أسلوب الإغراء والتحذير بالتفصيل",
+            content: `<h2>الإغراء والتحذير</h2>
+            <p><b>الإغراء:</b> هو تنبيه المخاطب إلى أمر محمود ليلزمه.<br><b>التحذير:</b> هو تنبيه المخاطب إلى أمر مكروه ليتجنبه.</p>
+            <h3>صور الإغراء والتحذير:</h3>
+            <ol>
+                <li><b>الإفراد:</b> (الصدقَ يا فتى) | (الكذبَ يا رجل).</li>
+                <li><b>التكرار:</b> (الصدقَ الصدقَ) | (الكذبَ الكذبَ).</li>
+                <li><b>العطف:</b> (الصدقَ والأمانةَ) | (الكذبَ والخيانتةَ).</li>
+            </ol>
+            <div class="rule"><b>حكم حذف الفعل:</b> <br>- في حالة (الإفراد) يجوز حذف الفعل أو ذكره.<br>- في حالتي (التكرار والعطف) يجب حذف الفعل.</div>
+            <h3>التحذير بـ (إيّا):</h3>
+            <p>له صور خاصة: (إياك والكذبَ) - (إياك الكذبَ) - (إياك من الكذب) - (إياك أن تكذب).</p>
+            <div class="parsing"><b>إعراب الاسم:</b> الاسم المنصوب يُعرب مفعول به منصوب بفعل محذوف تقديره (الزم) في الإغراء، و (احذر) في التحذير.</div>`
+        },
+        l6: {
+            title: "أسلوب التعجب (ما أفعله وأفعل به)",
+            content: `<h2>أسلوب التعجب</h2>
+            <p>هو استعظام فعل ظاهر المزية، وله صيغتان قياسيتان:</p>
+            <h3>الصيغة الأولى: ما أفعله</h3>
+            <div class="parsing"><b>مثال: "ما أعظمَ الإسلامَ!"</b><br>
+            - ما: تعجبية مبنية على السكون في محل رفع مبتدأ.<br>
+            - أعظم: فعل ماض جامد للتعجب مبني على الفتح، والفاعل مستتر وجوباً تقديره (هو).<br>
+            - الإسلام: مفعول به منصوب (هو المتعجب منه). والجملة الفعلية (أعظم الإسلام) في محل رفع خبر المبتدأ (ما).</div>
+            <h3>الصيغة الثانية: أفعِل به</h3>
+            <div class="parsing"><b>مثال: "أعظمْ بالإسلامِ!"</b><br>
+            - أعظم: فعل ماض جاء على صورة الأمر مبني على السكون (أو الفتح المقدر).<br>
+            - الباء: حرف جر زائد.<br>
+            - الإسلام: فاعل مرفوع بضمة مقدرة منع من ظهورها اشتغال المحل بحركة حرف الجر الزائد.</div>
+            <div class="rule"><b>شروط الفعل الذي يتعجب منه مباشرة:</b> ثلاثي، تام، مثبت، متصرف، مبني للمعلوم، قابل للتفاوت.</div>`
+        }
+    };
+
+function view(id) {
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('viewer').style.display = 'block';
+    
+    let url = window.location.href;
+    let text = "اطلع على درس " + data[id].title;
+    
+    let shareHTML = `
+        <div class="share-bar">
+            <div class="share-title">أدوات الدرس والمشاركة:</div>
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" class="share-btn bg-fb">فيسبوك</a>
+                <a href="https://api.whatsapp.com/send?text=${text} ${url}" target="_blank" class="share-btn bg-wa">واتساب</a>
+                <a href="https://telegram.me/share/url?url=${url}&text=${text}" target="_blank" class="share-btn bg-tg">تيليجرام</a>
+                <a href="https://www.instagram.com" target="_blank" class="share-btn bg-in">إنستغرام</a>
+                
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('✅ تم نسخ الرابط')" class="share-btn" style="background:#6c757d; border:none; color:white; cursor:pointer;">🔗 نسخ</button>
+                <button onclick="window.print()" class="share-btn" style="background:#34495e; border:none; color:white; cursor:pointer;">🖨️ طباعة</button>
+            </div>
+        </div>`;
+
+    document.getElementById('content').innerHTML = `<h2>${data[id].title}</h2>${data[id].content}` + shareHTML;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function home() {
+    document.getElementById('menu').style.display = 'grid';
+    document.getElementById('viewer').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function search() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.getElementsByClassName('card');
+    let found = false;
+
+    for (let i = 0; i < cards.length; i++) {
+        let cardText = cards[i].innerText.toLowerCase();
+        if (cardText.includes(input)) {
+            cards[i].style.display = "flex";
+            found = true;
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+
+    let noResults = document.getElementById('noResults');
+    if (noResults) {
+        if (input === "") {
+            noResults.style.display = "none";
+        } else {
+            noResults.style.display = found ? "none" : "block";
+        }
+    }
+}
+
+function toggleDark() {
+    document.body.classList.toggle('dark-mode');
+    const btn = document.querySelector('.dark-toggle');
+    btn.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+}
+function analyzeGrammar() {
+    let text = document.getElementById('aiInput').value;
+    let res = document.getElementById('aiResult');
+    
+    if (text.trim() === "") {
+        res.innerHTML = "❌ يرجى كتابة جملة أولاً!";
+        return;
+    }
+
+    // منطق التحليل الذكي
+    if (text.includes('نعم') || text.includes('بئس') || text.includes('حبذا')) {
+        res.innerHTML = "💡 هذا **أسلوب مدح أو ذم**. ابحث عنه في الدروس لتعرف إعراب المخصوص!";
+    } else if (text.includes('ما أجمل') || text.includes('أعظم ب') || text.includes('أجمل ب')) {
+        res.innerHTML = "💡 هذا **أسلوب تعجب**. تذكر أن ما بعد (ما أفعل) يكون مفعولاً به!";
+    } else if (text.includes('إياك') || (text.includes('الصدق') && text.includes('الأمانة'))) {
+        res.innerHTML = "💡 هذا **أسلوب إغراء أو تحذير**. الفعل هنا محذوف وجوباً!";
+    } else if (text.includes('لا') && text.length > 5) {
+        res.innerHTML = "💡 يبدو أنها **لا النافية للجنس**. تأكد أن اسمها نكرة وليس معرفة!";
+    } else if (text.includes('أحمد') || text.includes('مساجد') || text.includes('عثمان')) {
+        res.innerHTML = "💡 قد تحتوي جملتك على اسم **ممنوع من الصرف**. هل هو لعلة أم لعلتين؟";
+    } else {
+        res.innerHTML = "🧐 جملة قوية! ابحث في الفهرس عن الكلمات المفتاحية لتعرف قاعدتها.";
+    }
+}
+
+</script>
+<!-- Default Statcounter code for Elyas academy https://inaimi.github.io/ -->
+<script type="text/javascript">
+var sc_project=13203577; 
+var sc_invisible=1; 
+var sc_security="01a69bd0"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
+Statcounter" href="https://statcounter.com/" target="_blank"><img
+class="statcounter" src="https://c.statcounter.com/13203577/0/01a69bd0/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+<style>
+    .telegram-elyes {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        background: #0088cc !important;
+        color: white !important;
+        padding: 12px 20px !important;
+        border-radius: 50px !important;
+        text-decoration: none !important;
+        font-family: Arial, sans-serif !important;
+        font-weight: bold !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        z-index: 999999 !important; /* لضمان ظهوره فوق كل شيء */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        transition: 0.3s !important;
+    }
+    .telegram-elyes:hover {
+        transform: scale(1.1) !important;
+        background: #0077b5 !important;
+    }
+</style>
+
+<a href="https://t.me/sciences2asc" target="_blank" class="telegram-elyes">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+    </svg>
+    <span>Telegram Group</span>
+</a>
+
+</body>
+</html>
